@@ -1,0 +1,57 @@
+<section class="vh-100" style="background-image: linear-gradient(to right bottom, #e3cbe1, #dacfed, #cbd4f8, #b8dbfd, #a5e1fc, #99dff7, #8ddef2, #82dceb, #73d2e7, #64c9e4, #56bfe0, #48b5dc);">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg?size=338&ext=jpg&ga=GA1.1.348637339.1673505121"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                <form name="form" (ngSubmit)="login()" #f="ngForm">
+
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                   <div class="logo">
+                    <img class="logo" src="https://media.licdn.com/dms/image/C560BAQG_86vXWRYZlw/company-logo_200_200/0/1519900977384?e=2147483647&v=beta&t=EL1yXGCHkaVkjLdwYiwJbca3bzDoVXSe5tddnhRrtZc" alt="" >
+                  </div>
+                   </div>
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+
+                  <div class="form-outline mb-4">
+      
+                    <input type="text" name="UserName" [(ngModel)]="model.UserName" class="form-control sty1" placeholder="UserName" required>  
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input  type="password" name="Passward" [(ngModel)]="model.Password" class="form-control"  
+                    placeholder="Password">  
+                    <label class="form-label" for="form2Example27">Password</label>
+                  </div>
+                  <div>  
+                    <p style="color:#E92626;font-size:20px;font-weight:normal" Class="success" align="left">  
+                      {{errorMessage}}  
+                    </p>  
+                  </div> 
+
+                  <div class="pt-1 mb-4">
+                    <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+                  </div>
+                  <br>
+                  <a class="small text-muted" href="#!">Forgot password?</a> <br>
+                  <a href="#!" class="small text-muted">Terms of use.</a> 
+                  <a href="#!" class="small text-muted">Privacy policy</a>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
