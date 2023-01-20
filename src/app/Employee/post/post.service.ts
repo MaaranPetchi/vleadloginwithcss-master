@@ -11,8 +11,8 @@ import { Post } from './post';
 })
 export class PostService {
     
-  private apiURL = "https://jsonplaceholder.typicode.com";
-    
+  private apiURL = "https://jsonplaceholder.typicode.com"; 
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -20,7 +20,8 @@ export class PostService {
   }
    
   constructor(private httpClient: HttpClient) { }
-    
+  
+
   getAll(): Observable<Post[]> {
     return this.httpClient.get<Post[]>(this.apiURL + '/posts/')
     .pipe(

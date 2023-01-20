@@ -15,7 +15,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [IndexComponent, ViewComponent, CreateComponent, EditComponent],
@@ -28,13 +29,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     BrowserAnimationsModule,
     MatStepperModule,
 
-   
+    MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatListModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+    MatCheckboxModule
   ],
   providers: [  
     MatDatepickerModule,
