@@ -1,43 +1,75 @@
-<div class="bs-example">
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    $(document).ready(function () {
+      $("#chk").click(function () {
+        var chkStatus = this.checked;
+        if (chkStatus == true) {
+          document.getElementById('txtAddr4').value = document.getElementById('txtAddr1').value;
+          document.getElementById('txtAddr5').value = document.getElementById('txtAddr2'), value;
+          document.getElementById('txtAddr6').value = document.getElementById('txtAddr3'), value;
+         }
+         else{
+          document.getElementById('txtAddr4').value ='';
+          document.getElementById('txtAddr5').value ='';
+          document.getElementById('txtAddr6').value ='';
 
-<form [formGroup]="Empregister" (ngSubmit)="HandleSubmit()">
-    <mat-stepper [linear]="isLinear" #stepper>
-        
-        <mat-step [stepControl]="Basicform">
-          <div formGroupName="basic">
-            <ng-template matStepLabel>Fill Basic Details</ng-template>
-            <mat-form-field>    
+         }
+        })
+    });
+  </script>
+
+</head>
+
+<body class="createcrud">
+  <div class="container border py-3 my-3">
+    <div class="bs-example">
+
+      <form [formGroup]="Empregister" (ngSubmit)="HandleSubmit()">
+        <mat-stepper [linear]="isLinear" #stepper>
+
+          <mat-step [stepControl]="Basicform">
+            <div formGroupName="basic">
+              <ng-template matStepLabel>Fill Basic Details</ng-template>
+              <mat-form-field>
                 <mat-label>Employee Code</mat-label>
-                <input matInput  type="text" formControlName="TRADMIN" placeholder="TRADMIN" maxlength="5" autocomplete="off" >
-                </mat-form-field>
-                <br>
-                <mat-form-field appearance="fill">
-                  <mat-label>Department</mat-label>
-                  <mat-select formControlName="Department">
-                    <mat-option *ngFor="let department of departments" [value]="department.value">
-                      {{department.viewValue}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-            <br>
-            <mat-form-field appearance="fill">
+                <input matInput type="text" formControlName="TRADMIN" placeholder="TRADMIN" maxlength="5"
+                  autocomplete="off">
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>Department</mat-label>
+                <mat-select formControlName="Department">
+                  <mat-option *ngFor="let department of departments" [value]="department.value">
+                    {{department.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
                 <mat-label>DateOfJoining</mat-label>
-                <input matInput [matDatepicker]="picker"  formControlName="DateOfJoining">
+                <input matInput [matDatepicker]="picker" formControlName="DateOfJoining">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
-            <br>
-            <mat-form-field appearance="fill">
+              <br>
+              <mat-form-field appearance="fill">
                 <mat-label>DateofResignation</mat-label>
                 <input matInput [matDatepicker]="pickerr" formControlName="DateofResignation">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="pickerr"></mat-datepicker-toggle>
                 <mat-datepicker #pickerr></mat-datepicker>
               </mat-form-field>
-            <br>
-            <mat-form-field appearance="fill">
+              <br>
+              <mat-form-field appearance="fill">
                 <mat-label>Gender</mat-label>
                 <mat-select formControlName="Gender">
                   <mat-option *ngFor="let gender of genders" [value]="gender.value">
@@ -45,160 +77,329 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-          <br>
-          
-          <mat-form-field appearance="fill">
-              <mat-label>IsInternetAvailable</mat-label>
-              <mat-select formControlName="IsInternetAvailable">
-                <mat-option *ngFor="let internet of internets" [value]="internet.value">
-                  {{internet.internetavailablevalue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-        <br>
-          <mat-form-field appearance="fill">
-              <mat-label>System/Laptop</mat-label>
-              <mat-select formControlName="System">
-                <mat-option *ngFor="let system of systems" [value]="system.value">
-                  {{system.systemavailablevalue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-        <br>
-        <mat-form-field class="example-full-width">
-            <mat-label>EmployeeName</mat-label>
-            <input matInput placeholder="" value="" formControlName="EmployeeName">
-          </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill">
-            <mat-label>DateofBirth</mat-label>
-            <input matInput [matDatepicker]="dateofbirth" formControlName="DateofBirth">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="dateofbirth"></mat-datepicker-toggle>
-            <mat-datepicker #dateofbirth></mat-datepicker>
-          </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill">
-            <mat-label>Maritalstatus</mat-label>
-            <mat-select formControlName="Maritalstatus">
-              <mat-option *ngFor="let martial of martials" [value]="martial.value">
-                {{martial.martialvalue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-      <br>
-        <mat-form-field appearance="fill">
-            <mat-label>ResignReasons</mat-label>
-            <mat-select formControlName="ResignReasons">
-              <mat-option *ngFor="let resignation of resignations" [value]="resignation.value">
-                {{resignation.Resignationvalue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-      <br>
-        <mat-form-field appearance="fill">
-            <mat-label>Destination</mat-label>
-            <mat-select formControlName="Destination">
-              <mat-option *ngFor="let destination of destinations" [value]="destination.value">
-                {{destination.destinationvalue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-      <br>
-      <section class="example-section">
-        <mat-checkbox class="example-margin" formControlName="CheckBox" >IsOutSource</mat-checkbox>
+              <br>
 
-      </section>
-            <div>
-              <button mat-raised-button color="primary" matStepperNext>Next</button>
+              <mat-form-field appearance="fill">
+                <mat-label>IsInternetAvailable</mat-label>
+                <mat-select formControlName="IsInternetAvailable">
+                  <mat-option *ngFor="let internet of internets" [value]="internet.value">
+                    {{internet.internetavailablevalue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>System/Laptop</mat-label>
+                <mat-select formControlName="System">
+                  <mat-option *ngFor="let system of systems" [value]="system.value">
+                    {{system.systemavailablevalue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field class="example-full-width">
+                <mat-label>EmployeeName</mat-label>
+                <input matInput placeholder="" value="" formControlName="EmployeeName">
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>DateofBirth</mat-label>
+                <input matInput [matDatepicker]="dateofbirth" formControlName="DateofBirth">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="dateofbirth"></mat-datepicker-toggle>
+                <mat-datepicker #dateofbirth></mat-datepicker>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>Maritalstatus</mat-label>
+                <mat-select formControlName="Maritalstatus">
+                  <mat-option *ngFor="let martial of martials" [value]="martial.value">
+                    {{martial.martialvalue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>ResignReasons</mat-label>
+                <mat-select formControlName="ResignReasons">
+                  <mat-option *ngFor="let resignation of resignations" [value]="resignation.value">
+                    {{resignation.Resignationvalue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>Destination</mat-label>
+                <mat-select formControlName="Destination">
+                  <mat-option *ngFor="let destination of destinations" [value]="destination.value">
+                    {{destination.destinationvalue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <section class="example-section">
+                <mat-checkbox class="example-margin" formControlName="CheckBox">IsOutSource</mat-checkbox>
+
+              </section>
+              <div>
+                <button mat-raised-button color="primary" matStepperNext>Next</button>
+              </div>
             </div>
-        </div>
-        </mat-step>
-        <mat-step [stepControl]="contactform"  label="Fill out contact info">
-          <div formGroupName="contact">
-            <mat-form-field appearance="fill">
+          </mat-step>
+          <mat-step [stepControl]="contactform" label="Fill out contact info">
+            <div formGroupName="contact">
+              <mat-form-field appearance="fill">
                 <mat-label>ReportingManager1</mat-label>
                 <mat-select formControlName="ReportingManager1">
                   <mat-option *ngFor="let reportingmanager1 of reportingmanagers1" [value]="reportingmanager1.value">
                     {{reportingmanager1.reportingmanager1value}}
                   </mat-option>
                 </mat-select>
-              </mat-form-field>        
-          <br>
-          <mat-form-field appearance="fill">
-            <mat-label>ReportingManager2 </mat-label>
-            <mat-select formControlName="ReportingManager2">
-              <mat-option *ngFor="let manager2 of managers2" [value]="manager2.value">
-                {{manager2.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <br>
-          <mat-form-field appearance="fill">
-            <mat-label>Proficiency </mat-label>
-            <mat-select formControlName="Proficiency">
-              <mat-option *ngFor="let Proficiency of proficiencys" [value]="Proficiency.value">
-                {{Proficiency.proficiencyValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <br>
-          <mat-form-field appearance="fill">
-            <mat-label>ReportingLeader1 </mat-label>
-            <mat-select formControlName="ReportingLeader1">
-              <mat-option *ngFor="let reportingleader1 of reportingleaders1" [value]="reportingleader1.value">
-                {{reportingleader1.reportingleader1Value}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <br>
-          <mat-form-field appearance="fill">
-            <mat-label>ReportingLeader2 </mat-label>
-            <mat-select formControlName="ReportingLeader2">
-              <mat-option *ngFor="let reportingleader2 of reportingleaders2" [value]="reportingleader2.value">
-                {{reportingleader2.reportingleader2Value}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <br>
-          <mat-form-field appearance="fill">
-            <mat-label>EmployeeHierarchy</mat-label>
-            <mat-select formControlName="EmployeeHierarchy" [formControl]="toppings" multiple>
-              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-            <div>
-              <button mat-raised-button color="primary" matStepperPrevious>Back</button> | 
-              <button mat-raised-button color="primary" matStepperNext>Next</button>
-            </div>
-        </div>
-        </mat-step>
-        <mat-step [stepControl]="addressform" label="Fill out address">
-            <div formGroupName="address">
-              <mat-form-field appearance="fill">
-                <mat-label>Street</mat-label>
-                <input matInput formControlName="street" placeholder="street"
-                       required>
               </mat-form-field>
+              <br>
               <mat-form-field appearance="fill">
-                  <mat-label>City</mat-label>
-                  <input matInput formControlName="city" placeholder="City"
+                <mat-label>ReportingManager2 </mat-label>
+                <mat-select formControlName="ReportingManager2">
+                  <mat-option *ngFor="let manager2 of managers2" [value]="manager2.value">
+                    {{manager2.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>Proficiency </mat-label>
+                <mat-select formControlName="Proficiency">
+                  <mat-option *ngFor="let Proficiency of proficiencys" [value]="Proficiency.value">
+                    {{Proficiency.proficiencyValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>ReportingLeader1 </mat-label>
+                <mat-select formControlName="ReportingLeader1">
+                  <mat-option *ngFor="let reportingleader1 of reportingleaders1" [value]="reportingleader1.value">
+                    {{reportingleader1.reportingleader1Value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>ReportingLeader2 </mat-label>
+                <mat-select formControlName="ReportingLeader2">
+                  <mat-option *ngFor="let reportingleader2 of reportingleaders2" [value]="reportingleader2.value">
+                    {{reportingleader2.reportingleader2Value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>EmployeeHierarchy</mat-label>
+                <mat-select formControlName="EmployeeHierarchy" [formControl]="toppings" multiple>
+                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div>
+                <button mat-raised-button color="primary" matStepperPrevious>Back</button> |
+                <button mat-raised-button color="primary" matStepperNext>Next</button>
+              </div>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="addressform" label="Fill out address">
+            <div formGroupName="address">
+              <div class="row">
+                <div class="col">
+                  <h1>Present Address</h1>
+                </div>
+                <div class="col">
+                  <h1>Permanent Address</h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="PresentAddress1" id="txtAddr1" name="PresentAddress1"
+                      class="form-control" formControlName="PresentAddress1">
+                    <mat-error *ngIf="addressform.controls['PresentAddress1'].hasError('required')">
+                      PresentAddress1 is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="PermanentAddress1" id="txtAddr4" name="PermanentAddress1"
+                      class="form-control" formControlName="PermanentAddress1">
+                    <mat-error *ngIf="addressform.controls['PermanentAddress1'].hasError('required')">
+                      PermanentAddress1 is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="PresentAddress2" id="txtAddr2" name="PresentAddress2"
+                      class="form-control" formControlName="PresentAddress2">
+                    <mat-error *ngIf="addressform.controls['PresentAddress2'].hasError('required')">
+                      PresentAddress2 is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="PermanentAddress2" id="txtAddr5" name="PermanentAddress2"
+                      class="form-control" formControlName="PermanentAddress2">
+                    <mat-error *ngIf="addressform.controls['PermanentAddress2'].hasError('required')">
+                      PermanentAddress2 is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="PresentAddress3" id="txtAddr3" name="PresentAddress3"
+                      class="form-control" formControlName="PresentAddress3">
+                    <mat-error *ngIf="addressform.controls['PresentAddress3'].hasError('required')">
+                      PresentAddress3 is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="PermanentAddress3" id="txtAddr6" name="PermanentAddress3"
+                      class="form-control" formControlName="PermanentAddress3">
+                    <mat-error *ngIf="addressform.controls['PermanentAddress3'].hasError('required')">
+                      PermanentAddress3 is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <!--Checkbox is to be same as present-->
+                <p><b>Permanent Address <label><input type="checkbox" value="" id="chk">Same as
+                      Present Address</label></b></p>
+                <!--Checkbox is to be same as present-->
+              </div>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="PhoneNumber" name="PhoneNumber" class="form-control"
+                      formControlName="PhoneNumber">
+                    <mat-error *ngIf="addressform.controls['PhoneNumber'].hasError('required')">
+                      PhoneNumber is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="MobileNumber" name="MobileNumber" class="form-control"
+                      formControlName="MobileNumber">
+                    <mat-error *ngIf="addressform.controls['MobileNumber'].hasError('required')">
+                      MobileNumber is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="EmergencyContactName" name="EmergencyContactName" class="form-control"
+                      formControlName="EmergencyContactName">
+                    <mat-error *ngIf="addressform.controls['EmergencyContactName'].hasError('required')">
+                      EmergencyContactName is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="EmergencyContactNo" name="EmergencyContactNo" class="form-control"
+                      formControlName="EmergencyContactNo">
+                    <mat-error *ngIf="addressform.controls['EmergencyContactNo'].hasError('required')">
+                      EmergencyContactNo is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Official Email Address" name="OfficialEmailAddress"
+                      class="form-control" formControlName="OfficialEmailAddress">
+                    <mat-error *ngIf="addressform.controls['OfficialEmailAddress'].hasError('required')">
+                      Official Email Address is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field appearance="fill">
+                    <mat-label>EmployeeProcess</mat-label>
+                    <mat-select [formControl]="employeesprocess" multiple>
+                      <mat-option *ngFor="let employeeprocess of employeesprocessList"
+                        [value]="employeeprocess">{{employeeprocess}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field appearance="fill">
+                    <mat-label>EmployeeRoles</mat-label>
+                    <mat-select [formControl]="employeesrole" multiple>
+                      <mat-option *ngFor="let employeerole of employeesroleList"
+                        [value]="employeerole">{{employeerole}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Personal Email Address" formControlName="PersonalEmailAddress">
+                    <mat-error *ngIf="addressform.controls['PersonalEmailAddress'].hasError('required')">
+                      Personal Email Address is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- <mat-form-field appearance="fill">
+                 
+                  <mat-label>Street</mat-label>
+                  <input matInput formControlName="street" placeholder="street"
                          required>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
-                  <mat-label>PIN</mat-label>
-                  <input matInput formControlName="pin" placeholder="Pin"
-                         required>
-                </mat-form-field>
+                    <mat-label>City</mat-label>
+                    <input matInput formControlName="city" placeholder="City"
+                           required>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill">
+                    <mat-label>PIN</mat-label>
+                    <input matInput formControlName="pin" placeholder="Pin"
+                           required>
+                  </mat-form-field> -->
+
+
 
               <div>
-                <button mat-raised-button color="primary" matStepperPrevious>Back</button> | 
-                <button mat-raised-button color="accent" >Submit</button>
+                <button mat-raised-button color="primary" matStepperPrevious>Back</button> |
+                <button mat-raised-button color="accent">Submit</button>
               </div>
-          </div>
+            </div>
           </mat-step>
-    
-      </mat-stepper>
-    </form>
+
+        </mat-stepper>
+      </form>
 
     </div>
+  </div>
+
+  <!--
+      <div class="column" style="background-color:#aaa;">
+        <h2>Column 1</h2>
+        <p>Some text..</p>
+      </div>
+      <div class="column" style="background-color:#bbb;">
+        <h2>Column 2</h2>
+        <p>Some text..</p>
+      </div>
+    </div>-->
+</body>
+
+</html>

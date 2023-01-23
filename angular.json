@@ -100,7 +100,7 @@
               "node_modules/swiper/swiper-bundle.css"
             ],
             "scripts": [
-              "src/assets/home.js",
+             
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/bootstrap.min.js"
               

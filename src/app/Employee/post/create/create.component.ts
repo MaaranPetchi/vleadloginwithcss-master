@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation  } from '@angular/core';
 import { PostService } from '../post.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Post } from '../post';
+
 
 //Department dropdown interface
 interface Department {
@@ -78,14 +79,55 @@ interface ReportingLeader2 {
   value: string;
   reportingleader2Value: string;
 }
+//Employeeprocess manger 2
+interface Employeeprocess {
+  value: string;
+  employeeprocessValue: string;
+}
  
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  styleUrls: ['./create.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CreateComponent implements OnInit  {
+//multiple selection employeeprocess
+employeesrole= new FormControl('');
+employeesroleList:string[]=["Account","Accounts","Admin", "Artists", "Buisness", "Finance", "HR", "MIS" ,"Sales", "SalesAdmin"]
+
+//multiple selection employeeprocess end
+
+
+//multiple selection employeeprocess
+employeesprocess= new FormControl('');
+employeesprocessList:string[]=["Client Coordination",  "Production Allocation", "Production",  "Quality Allocation",   "Quality",  "Proof Reading Allocation", "Proof Reading",  "Buddy Proof", "Sew Proof","Sew Out","Client", "Reports"]
+
+//multiple selection employeeprocess end
+
+
+
+
+
+//Testing multiple selection employeeprocess
+// employeesList:Employeeprocess[] = [
+//   {value: 'Account-1', employeeprocessValue: 'Account'},
+//   {value: 'Accounts-2', employeeprocessValue: 'Accounts'},
+//   {value: 'Admin-3', employeeprocessValue: 'Admin'},
+//   {value: 'Artists-3', employeeprocessValue: 'Artists'},
+//   {value: 'Buisness-3', employeeprocessValue: 'Buisness'},
+//   {value: 'Finance-3', employeeprocessValue: 'Finance'},
+//   {value: 'HR-3', employeeprocessValue: 'HR'},
+//   {value: 'MIS-3', employeeprocessValue: 'MIS'},
+//   {value: 'Sales-3', employeeprocessValue: 'Sales'},
+//   {value: 'SalesAdmin-3', employeeprocessValue: 'SalesAdmin'},
+// ];
+
+//multiple selection employeeprocess end
+
+
+
   toppings = new FormControl('');
   toppingList: string[] = ['Ajith', 'Arun', 'Balaji', 'Rajesh', 'Karthi', 'Rajesh'];
  //department dropdown values
@@ -170,6 +212,7 @@ internets: internet[] = [
   ];
   
   
+  
 
   constructor(private builder: FormBuilder,) { }
   isLinear=true;
@@ -205,8 +248,32 @@ internets: internet[] = [
     }),
     address: this.builder.group({
       street:this.builder.control('',Validators.required),
-      city:this.builder.control('',Validators.required),
-      pin:this.builder.control('',Validators.required)
+      PersonalEmailAddress:this.builder.control('',Validators.required),
+      EmployeeRoles:this.builder.control('',Validators.required),
+      PresentAddress1:this.builder.control('',Validators.required),
+      PresentAddress2:this.builder.control('',Validators.required),
+      PresentAddress3:this.builder.control('',Validators.required),
+      PermanentAddress1:this.builder.control('',Validators.required),
+      PermanentAddress2:this.builder.control('',Validators.required),
+      PermanentAddress3:this.builder.control('',Validators.required),
+      PhoneNumber:this.builder.control('',Validators.required),
+      MobileNumber:this.builder.control('',Validators.required),
+      EmergencyContactName:this.builder.control('',Validators.required),
+      EmergencyContactNo:this.builder.control('',Validators.required),
+      OfficialEmailAddress:this.builder.control('',Validators.required),
+      EmployeeProcess:this.builder.control('',Validators.required),
+      address:this.builder.control('',Validators.required),
+      company: null,
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
+     
+      address2: null,
+     // city: [null, Validators.required],
+      state: [null, Validators.required],
+      postalCode: [null, Validators.compose([
+        Validators.required, Validators.minLength(5), Validators.maxLength(5)])
+      ],
+      shipping: ['free', Validators.required]
     })
   });
 
