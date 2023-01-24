@@ -1,19 +1,31 @@
 <div class="container">
-    <h1>Angular 14 CRUD Example - Tutsmake.com</h1>
+    <h1>Employee Form</h1>
    
     <a href="#" routerLink="/post/create/" class="btn btn-success">Create New Post</a>
      
     <table class="table table-bordered">
       <tr>
         <th>ID</th>
-        <th>Title</th>
-        <th>Body</th>
+        <th>EmployeeCode</th>
+        <th>EmployeeName</th>
+        <th>Department</th>
+        <th>Destination</th>
+        <th>Proficiency</th>
+        <th>ReportingManager<th>
+        <th>ReportingLeader</th>
+        
         <th width="220px">Action</th>
       </tr>
       <tr *ngFor="let post of posts">
         <td>{{ post.id }}</td>
-        <td>{{ post.title }}</td>
-        <td>{{ post.body }}</td>
+        <td>{{ post.EmployeeCode }}</td>
+        <td>{{ post.EmployeeName }}</td>
+        <td>{{ post.Department }}</td>
+        <td>{{ post.Destination }}</td>
+        <td>{{ post.Proficiency }}</td>
+        <td>{{ post.ReportingManager }}</td>
+        <td>{{ post.ReportingLeader }}</td>
+        <br>
         <td>
           <a href="#" [routerLink]="['/post/', post.id, 'view']" class="btn btn-info">View</a>
           <a href="#" [routerLink]="['/post/', post.id, 'edit']" class="btn btn-primary">Edit</a>

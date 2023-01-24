@@ -7,40 +7,21 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script>
-    $(document).ready(function () {
-      $("#chk").click(function () {
-        var chkStatus = this.checked;
-        if (chkStatus == true) {
-          document.getElementById('txtAddr4').value = document.getElementById('txtAddr1').value;
-          document.getElementById('txtAddr5').value = document.getElementById('txtAddr2'), value;
-          document.getElementById('txtAddr6').value = document.getElementById('txtAddr3'), value;
-         }
-         else{
-          document.getElementById('txtAddr4').value ='';
-          document.getElementById('txtAddr5').value ='';
-          document.getElementById('txtAddr6').value ='';
-
-         }
-        })
-    });
-  </script>
-
 </head>
 
 <body class="createcrud">
   <div class="container border py-3 my-3">
-    <div class="bs-example">
+    <div class="bs-example">      
 
-      <form [formGroup]="Empregister" (ngSubmit)="HandleSubmit()">
+      <form  [formGroup]="form" (ngSubmit)="submit()">
         <mat-stepper [linear]="isLinear" #stepper>
 
           <mat-step [stepControl]="Basicform">
             <div formGroupName="basic">
               <ng-template matStepLabel>Fill Basic Details</ng-template>
               <mat-form-field>
-                <mat-label>Employee Code</mat-label>
-                <input matInput type="text" formControlName="TRADMIN" placeholder="TRADMIN" maxlength="5"
+                <mat-label>EmployeeCode</mat-label>
+                <input matInput type="text"  name="EmployeeCode"  formControlName="TRADMIN" placeholder="TRADMIN" maxlength="8"
                   autocomplete="off">
               </mat-form-field>
               <br>
@@ -275,8 +256,8 @@
                   </mat-form-field>
                 </div>
                 <!--Checkbox is to be same as present-->
-                <p><b>Permanent Address <label><input type="checkbox" value="" id="chk">Same as
-                      Present Address</label></b></p>
+                <!-- <p><b>Permanent Address <label><input type="checkbox" (change)="showHideText()"  value="" id="chk">Same as
+                      Present Address</label></b></p> -->
                 <!--Checkbox is to be same as present-->
               </div>
               <div class="row">
@@ -342,10 +323,11 @@
               <div class="row">
                 <div class="col">
                   <mat-form-field appearance="fill">
-                    <mat-label>EmployeeRoles</mat-label>
-                    <mat-select [formControl]="employeesrole" multiple>
-                      <mat-option *ngFor="let employeerole of employeesroleList"
-                        [value]="employeerole">{{employeerole}}</mat-option>
+                    <mat-label>EmployeeRoles </mat-label>
+                    <mat-select formControlName="EmployeeRoles">
+                      <mat-option *ngFor="let employeerole of employeeroles" [value]="employeerole.value">
+                        {{employeerole.employeeroleValue}}
+                      </mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>
@@ -379,7 +361,7 @@
 
               <div>
                 <button mat-raised-button color="primary" matStepperPrevious>Back</button> |
-                <button mat-raised-button color="accent">Submit</button>
+                <button mat-raised-button color="accent" >Submit</button>
               </div>
             </div>
           </mat-step>

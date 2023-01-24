@@ -84,6 +84,11 @@ interface Employeeprocess {
   value: string;
   employeeprocessValue: string;
 }
+//Employeeprocess manger 2
+interface EmployeeRole {
+  value: string;
+  employeeroleValue: string;
+}
  
 
 @Component({
@@ -93,6 +98,8 @@ interface Employeeprocess {
   encapsulation: ViewEncapsulation.None
 })
 export class CreateComponent implements OnInit  {
+  form!: FormGroup;
+
 //multiple selection employeeprocess
 employeesrole= new FormControl('');
 employeesroleList:string[]=["Account","Accounts","Admin", "Artists", "Buisness", "Finance", "HR", "MIS" ,"Sales", "SalesAdmin"]
@@ -210,88 +217,97 @@ internets: internet[] = [
     {value: 'PersonalProblem-2', reportingleader2Value: 'Balaji'},
     {value: 'BetterOffer-3', reportingleader2Value: 'Arun'},
   ];
+  //employeeroles
+  employeeroles: EmployeeRole[] = [
+    {value: 'Account-0', employeeroleValue: 'Account'},
+    {value: 'Accounts-1', employeeroleValue: 'Accounts'},
+    {value: 'Admin-2', employeeroleValue: 'Admin'},
+    {value: 'Artists-3', employeeroleValue: 'Artists'},
+    {value: 'Buisness-4', employeeroleValue: 'Buisness'},
+    {value: 'Finance-5', employeeroleValue: 'Finance'},
+    {value: 'HR-6', employeeroleValue: 'HR'},
+    {value: 'MIS-7', employeeroleValue: 'MIS'},
+    {value: 'Sales-8', employeeroleValue: 'Sales'},
+    {value: 'SalesAdmin-9', employeeroleValue: 'SalesAdmin'},
+  ];
   
-  
-  
-
-  constructor(private builder: FormBuilder,) { }
+  constructor(private builder: FormBuilder,public postService: PostService,
+    private router: Router) { }
   isLinear=true;
 
   ngOnInit(): void {
+    this.form = this.builder.group({
+      basic: this.builder.group({
+        TRADMIN: new FormControl('',Validators.required),
+        Department:new FormControl('',Validators.required),
+        DateOfJoining:new FormControl('',Validators.required),
+        DateofResignation:new FormControl('',Validators.required),
+        Gender:new FormControl('',Validators.required),
+        IsInternetAvailable:new FormControl('',Validators.required),
+        System:new FormControl('',Validators.required),
+        EmployeeName:new FormControl('',Validators.required),
+        DateofBirth:new FormControl('',Validators.required),
+        Maritalstatus:new FormControl('',Validators.required),
+        ResignReasons:new FormControl('',Validators.required),
+        Destination:new FormControl('',Validators.required),
+        CheckBox:new FormControl('',Validators.required),
+      }),
+      contact: this.builder.group({
+        ReportingManager1:new FormControl('',Validators.required),
+        ReportingManager2:new FormControl('',Validators.required),
+        Proficiency:new FormControl('',Validators.required),
+        ReportingLeader1:new FormControl('',Validators.required),
+        ReportingLeader2:new FormControl('',Validators.required),
+        EmployeeHierarchy:new FormControl('',Validators.required),
+  
+      }),
+      address: this.builder.group({
+        street:new FormControl('',Validators.required),
+        PersonalEmailAddress:new FormControl('',Validators.required),
+        EmployeeRoles:new FormControl('',Validators.required),
+        PresentAddress1:new FormControl('',Validators.required),
+        PresentAddress2:new FormControl('',Validators.required),
+        PresentAddress3:new FormControl('',Validators.required),
+        PermanentAddress1:new FormControl('',Validators.required),
+        PermanentAddress2:new FormControl('',Validators.required),
+        PermanentAddress3:new FormControl('',Validators.required),
+        PhoneNumber:new FormControl('',Validators.required),
+        MobileNumber:new FormControl('',Validators.required),
+        EmergencyContactName:new FormControl('',Validators.required),
+        EmergencyContactNo:new FormControl('',Validators.required),
+        OfficialEmailAddress:new FormControl('',Validators.required),
+        EmployeeProcess:new FormControl('',Validators.required),
+        address:new FormControl('',Validators.required),
+       
+      })
+    });
   }
 
-  Empregister = this.builder.group({
-    basic: this.builder.group({
-      TRADMIN:this.builder.control('',Validators.required),
-      Department:this.builder.control('',Validators.required),
-      DateOfJoining:this.builder.control('',Validators.required),
-      DateofResignation:this.builder.control('',Validators.required),
-      Gender:this.builder.control('',Validators.required),
-      IsInternetAvailable:this.builder.control('',Validators.required),
-      System:this.builder.control('',Validators.required),
-      EmployeeName:this.builder.control('',Validators.required),
-      DateofBirth:this.builder.control('',Validators.required),
-      Maritalstatus:this.builder.control('',Validators.required),
-      ResignReasons:this.builder.control('',Validators.required),
-      Destination:this.builder.control('',Validators.required),
-      CheckBox:this.builder.control('',Validators.required),
 
-    }),
-    contact: this.builder.group({
-      ReportingManager1:this.builder.control('',Validators.required),
-      ReportingManager2:this.builder.control('',Validators.required),
-      Proficiency:this.builder.control('',Validators.required),
-      ReportingLeader1:this.builder.control('',Validators.required),
-      ReportingLeader2:this.builder.control('',Validators.required),
-      EmployeeHierarchy:this.builder.control('',Validators.required),
-
-    }),
-    address: this.builder.group({
-      street:this.builder.control('',Validators.required),
-      PersonalEmailAddress:this.builder.control('',Validators.required),
-      EmployeeRoles:this.builder.control('',Validators.required),
-      PresentAddress1:this.builder.control('',Validators.required),
-      PresentAddress2:this.builder.control('',Validators.required),
-      PresentAddress3:this.builder.control('',Validators.required),
-      PermanentAddress1:this.builder.control('',Validators.required),
-      PermanentAddress2:this.builder.control('',Validators.required),
-      PermanentAddress3:this.builder.control('',Validators.required),
-      PhoneNumber:this.builder.control('',Validators.required),
-      MobileNumber:this.builder.control('',Validators.required),
-      EmergencyContactName:this.builder.control('',Validators.required),
-      EmergencyContactNo:this.builder.control('',Validators.required),
-      OfficialEmailAddress:this.builder.control('',Validators.required),
-      EmployeeProcess:this.builder.control('',Validators.required),
-      address:this.builder.control('',Validators.required),
-      company: null,
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
+  get f(){
+    return this.form.controls;
+  }
      
-      address2: null,
-     // city: [null, Validators.required],
-      state: [null, Validators.required],
-      postalCode: [null, Validators.compose([
-        Validators.required, Validators.minLength(5), Validators.maxLength(5)])
-      ],
-      shipping: ['free', Validators.required]
-    })
-  });
-
   get Basicform(){
-    return this.Empregister.get("basic") as FormGroup;
+    return this.form.get("basic") as FormGroup;
   }
   get contactform(){
-    return this.Empregister.get("contact") as FormGroup;
+    return this.form.get("contact") as FormGroup;
   }
   get addressform(){
-    return this.Empregister.get("address") as FormGroup;
+    return this.form.get("address") as FormGroup;
   }
-  HandleSubmit(){
-    if(this.Empregister.valid){
-      console.log(this.Empregister.value);
+  
+  submit(){
+    if(this.form.invalid){
+      console.log(this.form.value);
+      this.postService.create(this.form.value).subscribe((res:any) => {
+        console.log('Post created successfully!');
+        this.router.navigateByUrl('post/index');
+   })
     }
   }
-  private _allState: Observable<Post[]>;  
-  SelCountryId:string="0";  
-  FromStudent: any;  
+  
+  
+
 }

@@ -42,5 +42,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatDatepickerModule,
     MatNativeDateModule  
   ],
+  
 })
 export class PostModule { }
